@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tareas-app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://tareas-db.cy2zjpypqmwt.us-east-1.rds.amazonaws.com:5432/tareasdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SERVER_PORT: 80
+    ports:
+      - "9020:80"
+    restart: unless-stopped
+    networks:
+      - dwcs
+
+networks:
+  dwcs:
+    driver: bridge
